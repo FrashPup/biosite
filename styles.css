@@ -143,7 +143,7 @@ section h2 {
 }
 
 .mascot {
-    width: 50%;
+    width: 75%;
     height: auto;
     margin: 0 auto 0;
     display: block;
@@ -321,10 +321,6 @@ section h2 {
     
     .nav-links {
         gap: 16px;
-    }
-    
-    .mascot {
-        margin-bottom: 16px;
     }
     
     section {
