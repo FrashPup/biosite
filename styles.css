@@ -1,56 +1,45 @@
 /* Theme variables */
 :root {
-    /* Base theme colors */
     --theme-primary: #ff8eb4;
     --theme-secondary: #87ceeb;
     --theme-bg-base: #0f0f1a;
     --theme-bg-elevated: #1a1a2d;
-    
-    /* Text colors */
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.8);
-    
-    /* UI Effects */
     --blur-overlay: 10px;
     --blur-card: 5px;
     --corner-radius: 16px;
-    
-    /* Backgrounds */
     --bg-page: linear-gradient(145deg, var(--theme-bg-base), var(--theme-bg-elevated));
     --bg-accent: linear-gradient(120deg, var(--theme-primary), var(--theme-secondary));
     --bg-card: linear-gradient(120deg, rgba(45, 45, 65, 0.5), rgba(55, 55, 75, 0.5));
     --bg-card-hover: linear-gradient(120deg, rgba(55, 55, 75, 0.6), rgba(65, 65, 85, 0.6));
-    
-    /* Interactive elements */
     --border-subtle: rgba(255, 255, 255, 0.1);
     --border-highlight: var(--theme-primary);
 }
 
-/* Base styles */
-html, body {
+/* Reset */
+* {
     margin: 0;
     padding: 0;
-    height: 100%;
-    width: 100%;
+    box-sizing: border-box;
 }
 
-html { 
+/* Base styles */
+html {
     background: var(--theme-bg-base);
-    height: -webkit-fill-available;
+    height: 100%;
 }
 
 body {
     background: var(--bg-page);
     min-height: 100%;
-    min-height: -webkit-fill-available;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    font-family: system-ui;
+    width: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-primary);
     position: relative;
-    overflow-x: hidden;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Navigation styles */
@@ -60,12 +49,13 @@ header {
     left: 0;
     right: 0;
     z-index: 1000;
-    -webkit-backdrop-filter: blur(var(--blur-overlay));
-    backdrop-filter: blur(var(--blur-overlay));
+    width: 100%;
 }
 
 .nav {
     background: linear-gradient(180deg, rgba(15, 15, 26, 0.95), rgba(15, 15, 26, 0.8));
+    -webkit-backdrop-filter: blur(var(--blur-overlay));
+    backdrop-filter: blur(var(--blur-overlay));
     border-bottom: 1px solid rgba(255, 142, 180, 0.1);
 }
 
@@ -85,8 +75,8 @@ header {
     text-decoration: none;
     background: var(--bg-accent);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .nav-links {
@@ -99,7 +89,6 @@ header {
     text-decoration: none;
     transition: all 0.2s ease;
     font-size: 0.9rem;
-    padding: 8px 0;
 }
 
 .nav-link:hover {
@@ -110,13 +99,13 @@ header {
 main {
     width: 100%;
     max-width: 800px;
-    position: relative;
-    z-index: 1;
+    padding: 80px 20px 20px;
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 24px;
-    padding-top: 80px;
-    flex: 1;
+    position: relative;
+    z-index: 1;
 }
 
 /* Section styles */
@@ -124,6 +113,7 @@ section {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    width: 100%;
 }
 
 section h1, section h2 {
@@ -132,24 +122,36 @@ section h1, section h2 {
     margin: 0;
     background: var(--bg-accent);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 section h1 {
-    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-size: 2rem;
     margin-bottom: 16px;
 }
 
 section h2 {
-    font-size: clamp(1.25rem, 4vw, 1.5rem);
+    font-size: 1.5rem;
 }
 
-/* Grid layouts */
-.content-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
+/* Profile section */
+.profile {
+    text-align: center;
+    margin-bottom: 24px;
+	gap: 0;
+}
+
+.mascot {
+    width: 50%;
+    height: auto;
+    margin: 0 auto 0;
+    display: block;
+    opacity: 0;
+    animation: slideUp 0.5s ease forwards;
+}
+
+.profile-content {
     width: 100%;
 }
 
@@ -159,13 +161,11 @@ section h2 {
     border: 1px solid var(--border-subtle);
     -webkit-backdrop-filter: blur(var(--blur-card));
     backdrop-filter: blur(var(--blur-card));
-    transition: all 0.2s ease;
+    width: 100%;
     opacity: 0;
     animation: slideUp 0.5s ease forwards 0.2s;
-    width: 100%;
 }
 
-/* Content cards */
 .content-card {
     background: var(--bg-card);
     color: var(--text-primary);
@@ -178,16 +178,16 @@ section h2 {
 }
 
 .card-content {
-    padding: 20px;
+    padding: 24px;
 }
 
 .card-title {
-    font-size: clamp(1.1rem, 3vw, 1.25rem);
+    font-size: 1.25rem;
     margin: 0 0 16px 0;
     background: var(--bg-accent);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .card-description {
@@ -197,7 +197,13 @@ section h2 {
     line-height: 1.5;
 }
 
-/* Link cards */
+/* Links section */
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
 .link-card {
     background: var(--bg-card);
     padding: 16px;
@@ -212,32 +218,14 @@ section h2 {
     transform: translateY(-2px);
 }
 
-/* Profile section */
-.mascot {
-    display: block;
-    width: min(50%, 200px);
-    height: auto;
-    margin: 0 auto;
-    opacity: 0;
-    animation: slideUp 0.5s ease forwards;
-    animation-delay: 0.5s;
-}
-
-.profile {
-    text-align: center;
-    margin-bottom: 24px;
-    gap: 0;
-}
-
-/* Links section */
-.links {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+/* Projects section */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
     width: 100%;
 }
 
-/* Projects section */
 .projects img {
     width: 100%;
     height: 200px;
@@ -315,27 +303,31 @@ section h2 {
 
 @media (max-width: 767px) {
     body {
-        padding: 12px;
+        min-height: -webkit-fill-available;
     }
     
     .nav-content {
-        padding: 0 12px;
+        padding: 0 16px;
         height: 56px;
     }
     
     main {
-        padding-top: 68px;
+        padding: 72px 16px 16px;
     }
     
     .card-content {
-        padding: 16px;
+        padding: 20px;
     }
     
     .nav-links {
         gap: 16px;
     }
     
-    .nav-link {
-        font-size: 0.85rem;
+    .mascot {
+        margin-bottom: 16px;
+    }
+    
+    section {
+        gap: 16px;
     }
 }
