@@ -30,17 +30,19 @@
 html, body {
     margin: 0;
     padding: 0;
-    min-height: 100vh;
+    height: 100%;
     width: 100%;
 }
 
 html { 
-    background: var(--theme-bg-base); 
+    background: var(--theme-bg-base);
+    height: -webkit-fill-available;
 }
 
 body {
     background: var(--bg-page);
-    min-height: 100vh;
+    min-height: 100%;
+    min-height: -webkit-fill-available;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -58,11 +60,12 @@ header {
     left: 0;
     right: 0;
     z-index: 1000;
+    -webkit-backdrop-filter: blur(var(--blur-overlay));
+    backdrop-filter: blur(var(--blur-overlay));
 }
 
 .nav {
     background: linear-gradient(180deg, rgba(15, 15, 26, 0.95), rgba(15, 15, 26, 0.8));
-    backdrop-filter: blur(var(--blur-overlay));
     border-bottom: 1px solid rgba(255, 142, 180, 0.1);
 }
 
@@ -82,8 +85,8 @@ header {
     text-decoration: none;
     background: var(--bg-accent);
     -webkit-background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .nav-links {
@@ -96,6 +99,7 @@ header {
     text-decoration: none;
     transition: all 0.2s ease;
     font-size: 0.9rem;
+    padding: 8px 0;
 }
 
 .nav-link:hover {
@@ -112,6 +116,7 @@ main {
     flex-direction: column;
     gap: 24px;
     padding-top: 80px;
+    flex: 1;
 }
 
 /* Section styles */
@@ -127,17 +132,17 @@ section h1, section h2 {
     margin: 0;
     background: var(--bg-accent);
     -webkit-background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 section h1 {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
     margin-bottom: 16px;
 }
 
 section h2 {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
 }
 
 /* Grid layouts */
@@ -145,16 +150,19 @@ section h2 {
     display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
+    width: 100%;
 }
 
 /* Card styles */
 .card {
     border-radius: var(--corner-radius);
     border: 1px solid var(--border-subtle);
+    -webkit-backdrop-filter: blur(var(--blur-card));
     backdrop-filter: blur(var(--blur-card));
     transition: all 0.2s ease;
     opacity: 0;
     animation: slideUp 0.5s ease forwards 0.2s;
+    width: 100%;
 }
 
 /* Content cards */
@@ -170,16 +178,16 @@ section h2 {
 }
 
 .card-content {
-    padding: 24px;
+    padding: 20px;
 }
 
 .card-title {
-    font-size: 1.25rem;
+    font-size: clamp(1.1rem, 3vw, 1.25rem);
     margin: 0 0 16px 0;
     background: var(--bg-accent);
     -webkit-background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .card-description {
@@ -207,9 +215,9 @@ section h2 {
 /* Profile section */
 .mascot {
     display: block;
-    width: 50%;
+    width: min(50%, 200px);
     height: auto;
-    margin: 0 auto 0;
+    margin: 0 auto;
     opacity: 0;
     animation: slideUp 0.5s ease forwards;
     animation-delay: 0.5s;
@@ -226,6 +234,7 @@ section h2 {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    width: 100%;
 }
 
 /* Projects section */
@@ -251,6 +260,7 @@ section h2 {
     color: var(--text-primary);
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid var(--border-subtle);
+    -webkit-backdrop-filter: blur(var(--blur-card));
     backdrop-filter: blur(var(--blur-card));
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     transition: all 0.2s ease;
@@ -280,7 +290,6 @@ section h2 {
 }
 
 /* Animations */
-
 @keyframes slideUp {
     from {
         opacity: 0;
@@ -304,12 +313,29 @@ section h2 {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     body {
-        padding: 16px;
-        min-height: -webkit-fill-available;
+        padding: 12px;
     }
+    
     .nav-content {
-        padding: 0 16px;
+        padding: 0 12px;
+        height: 56px;
+    }
+    
+    main {
+        padding-top: 68px;
+    }
+    
+    .card-content {
+        padding: 16px;
+    }
+    
+    .nav-links {
+        gap: 16px;
+    }
+    
+    .nav-link {
+        font-size: 0.85rem;
     }
 }
