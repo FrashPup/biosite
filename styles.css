@@ -52,18 +52,21 @@ body {
 }
 
 /* Navigation styles */
-.nav-container {
+header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(180deg, rgba(15, 15, 26, 0.95), rgba(15, 15, 26, 0.8));
-    backdrop-filter: blur(var(--blur-overlay));
-    border-bottom: 1px solid rgba(255, 142, 180, 0.1);
     z-index: 1000;
 }
 
-.nav-content-container {
+.nav {
+    background: linear-gradient(180deg, rgba(15, 15, 26, 0.95), rgba(15, 15, 26, 0.8));
+    backdrop-filter: blur(var(--blur-overlay));
+    border-bottom: 1px solid rgba(255, 142, 180, 0.1);
+}
+
+.nav-content {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 20px;
@@ -73,7 +76,7 @@ body {
     align-items: center;
 }
 
-.nav-logo-element {
+.nav-logo {
     font-size: 1.25rem;
     font-weight: bold;
     text-decoration: none;
@@ -83,48 +86,24 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-.nav-links-container {
+.nav-links {
     display: flex;
     gap: 24px;
 }
 
-.nav-link-element {
+.nav-link {
     color: var(--text-secondary);
     text-decoration: none;
     transition: all 0.2s ease;
     font-size: 0.9rem;
 }
 
-.nav-link-element:hover {
+.nav-link:hover {
     color: var(--theme-primary);
 }
 
-/* Card base styles */
-.card-container {
-    background: var(--bg-card);
-    border-radius: var(--corner-radius);
-    border: 1px solid var(--border-subtle);
-    backdrop-filter: blur(var(--blur-card));
-    color: var(--text-primary);
-    transition: all 0.2s ease;
-}
-
-.card-container:hover {
-    border-color: var(--border-highlight);
-    background: var(--bg-card-hover);
-    transform: translateY(-2px);
-}
-
-/* Profile section */
-.profile-container {
-    padding: 24px;
-    text-align: center;
-    opacity: 0;
-    animation: slideUp 0.5s ease forwards 0.2s;
-}
-
-/* Content layout */
-.main-container {
+/* Main content */
+main {
     width: 100%;
     max-width: 800px;
     position: relative;
@@ -135,63 +114,129 @@ body {
     padding-top: 80px;
 }
 
-/* Links section */
-.links-container {
+/* Section styles */
+section {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 24px;
 }
 
-.link-element {
-    padding: 16px;
-    text-decoration: none;
+section h1, section h2 {
+    color: var(--text-primary);
     text-align: center;
-    opacity: 0;
-    animation: slideUp 0.5s ease forwards;
-}
-
-/* Projects section */
-.projects-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-top: 24px;
-    opacity: 0;
-    animation: slideUp 0.5s ease forwards 0.4s;
-}
-
-.project-container {
-    overflow: hidden;
-}
-
-.project-image-element {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.project-content-container {
-    padding: 20px;
-}
-
-.project-title-element {
-    font-size: 1.25rem;
-    margin: 0 0 8px 0;
+    margin: 0;
     background: var(--bg-accent);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.project-description-element {
+section h1 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+
+section h2 {
+    font-size: 1.5rem;
+}
+
+/* Grid layouts */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+/* Card styles */
+.card {
+    border-radius: var(--corner-radius);
+    border: 1px solid var(--border-subtle);
+    backdrop-filter: blur(var(--blur-card));
+    transition: all 0.2s ease;
+    opacity: 0;
+    animation: slideUp 0.5s ease forwards 0.2s;
+}
+
+/* Content cards */
+.content-card {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    overflow: hidden;
+}
+
+.content-card:hover {
+    border-color: var(--border-highlight);
+    background: var(--bg-card-hover);
+}
+
+.card-content {
+    padding: 24px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin: 0 0 16px 0;
+    background: var(--bg-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card-description {
     color: var(--text-secondary);
     font-size: 0.9rem;
     margin: 0 0 16px 0;
     line-height: 1.5;
 }
 
+/* Link cards */
+.link-card {
+    background: var(--bg-card);
+    padding: 16px;
+    text-decoration: none;
+    text-align: center;
+    color: var(--text-primary);
+}
+
+.link-card:hover {
+    border-color: var(--border-highlight);
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+}
+
+/* Profile section */
+.mascot {
+    display: block;
+    width: 50%;
+    height: auto;
+    margin: 0 auto 0;
+    opacity: 0;
+    animation: slideUp 0.5s ease forwards;
+    animation-delay: 0.5s;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 24px;
+    gap: 0;
+}
+
+/* Links section */
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Projects section */
+.projects img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
 /* Tags section */
-.tags-container {
+.tags {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
@@ -199,7 +244,7 @@ body {
     margin-top: 12px;
 }
 
-.tag-element {
+.tag {
     padding: 4px 12px;
     border-radius: 999px;
     font-size: 0.875rem;
@@ -211,22 +256,13 @@ body {
     transition: all 0.2s ease;
 }
 
-.tag-element:hover {
+.tag:hover {
     transform: translateY(-1px);
     filter: brightness(1.1);
 }
 
-.section-title-element {
-    color: var(--text-primary);
-    font-size: 1.5rem;
-    margin: 32px 0 16px 0;
-    text-align: center;
-    opacity: 0;
-    animation: fadeIn 0.5s ease forwards 0.3s;
-}
-
 /* Stars background */
-.stars-container {
+.stars {
     position: fixed;
     top: 0;
     left: 0;
@@ -236,7 +272,7 @@ body {
     z-index: 0;
 }
 
-.star-element {
+.star {
     position: absolute;
     background: var(--text-primary);
     border-radius: 50%;
@@ -244,9 +280,6 @@ body {
 }
 
 /* Animations */
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
 
 @keyframes slideUp {
     from {
@@ -266,7 +299,7 @@ body {
 
 /* Responsive design */
 @media (min-width: 768px) {
-    .projects-container {
+    .content-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -276,7 +309,7 @@ body {
         padding: 16px;
         min-height: -webkit-fill-available;
     }
-    .nav-content-container {
+    .nav-content {
         padding: 0 16px;
     }
 }
